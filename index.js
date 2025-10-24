@@ -14,3 +14,5 @@ start_button.addEventListener("click", ()=>{
         input.value = 4
     }
 })
+
+createBoard()
