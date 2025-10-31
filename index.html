@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Couples</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 
 <body>
     <div class="content">
-        <div class="main">
+        <div class="board">
             <div class="state">
                 <div class="state__header">
                     <h1 class="state__title">Пары</h1>
@@ -22,11 +23,22 @@
                 
                 <div class="settings-controls">
                     <input type="number" class="board__input" min="2" max="6" value="" placeholder="По горизонтали / вертикали">
-                    <button class="board__button">Начать</button>
+                    <button class="board__button button">Начать</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <template id="gameTableTemplate">
+        <div class="table">
+            <button class="table__button button">Рестарт</button>
+        </div>
+    </template>
+
+    <template id="cardTemplate">
+        <div class="card"></div>
+    </template>
+    
     <script src="index.js"></script>
 </body>
 </html>
