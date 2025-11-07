@@ -1,51 +1,16 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: Verdana, sans-serif;
-}
-
-.button {
-  width: 100%;
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background: #fff;
-  color: #000;
-  border-radius: 40px;
-  padding: 20px;
-  cursor: pointer;
-}
-
-.button:hover {
-  color: rgba(181, 13, 181, 0.7);
-}
-
-.table {
-  display: grid;
-  min-width: 500px;
-  max-width: 1000px;
-  margin-bottom: 20px;
-  gap: 10px;
-}
-
-.card {
-  aspect-ratio: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(218, 69, 218, 0.6);
-  border-radius: 5px;
-  transition: .3s;
-  font-size: 30px;
-  cursor: pointer;
-}
-
-.card:hover {
-  background-color: rgba(218, 69, 218, 1);
+  background-image: url("Фон.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-y: hidden;
 }
 
 /* Обертка всего контента игры */
@@ -65,53 +30,20 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, .2);
   border-radius: 10px;
   padding: 30px 40px;
-  width: 100%;
-  max-width: 500px;
 }
 
 /* Элемент, в котором группируются вся игровая информация: название игры, кол-во шагов и оставшееся время */
 .state {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
 }
 
-/* Заголовок настроек */
-.settings-title {
-  text-align: center;
-  margin: 15px 0;
-  font-size: 18px;
-}
-
-/* Контейнер для элементов управления настройками */
-.settings-controls {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-/* Заголовок игры */
-.state__title{
+/* Название игры */
+.state__title {
   font-size: 36px;
   text-align: center;
   margin: 15px 0;
-}
-
-/* Контейнер для шагов и времени */
-.state__header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-}
-
-/* Стили для текста шагов и времени */
-.steps, .time {
-  font-size: 18px;
-  text-align: center;
 }
 
 /* Поле ввода числового типа */
@@ -120,10 +52,12 @@ body {
   height: 100%;
   background: transparent;
   outline: none;
-  border: 2px solid rgba(0,0,0, .2);
+  border: 2px solid rgba(0, 0, 0, .2);
   border-radius: 40px;
   font-size: 16px;
   padding: 20px 45px 20px 20px;
+  margin: 30px 0;
+
 }
 
 /* Стили для замещающего текста внутри поля ввода */
@@ -136,27 +70,94 @@ body {
   border: 2px solid black;
 }
 
-/* Кнопка "Начать" */
-.board__button  {
-    width: 100%;
-    font-size: 20px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    background: #fff;
-    border: 2px solid rgba(0,0,0, .2);
-    border-radius: 40px;
-    color:#000;
-    border-radius: 40px;
-    padding: 20px;
-    cursor: pointer;
-    border: none;
-}
-
-.board__button:focus {
-  border: 2px solid black;
+/* Все кнопки */
+.button {
+  width: 100%;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-color: transparent;
+  color: #000;
+  border: 2px solid rgba(0, 0, 0, .4);
+  border-radius: 40px;
+  padding: 20px;
+  cursor: pointer;
 }
 
 /* Состояние наведения курсора мыши на кнопку */
-.board__button:hover{
+.button:hover {
   color: rgba(181, 13, 181, 0.7);
+}
+
+/* Игровое поле */
+.table {
+  display: grid;
+  min-width: 500px;
+  max-width: 1000px;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+/* Отдельно взятая карточка */
+.card {
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(218, 69, 218, 0.6);
+  border-radius: 5px;
+  transition: .3s;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: rgba(218, 69, 218, 1);
+}
+
+.card.flip {
+  background: #e11284;
+  transform: perspective(100px) rotateY(180deg);
+  user-select: none;
+}
+
+.default-icon {
+  display: block;
+  pointer-events: none;
+  /* display: none; */
+}
+
+.flipped-icon {
+  display: none;
+  pointer-events: none;
+  /* display: block; */
+}
+
+.card.flip .flipped-icon {
+  display: block;
+}
+
+.card.flip .default-icon {
+  display: none;
+}
+
+.card.successfully {
+  background: #1dd032;
+  transform: scale(0.95);
+}
+
+.confetti {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 100vh;
+  z-index: -1;
+}
+
+@keyframes moveDown {
+  100% {
+    top: 110%;
+    transform: rotate(360deg);
+  }
 }

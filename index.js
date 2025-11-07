@@ -1,49 +1,29 @@
+import { createBoard } from "./scripts/createBoard.js"
+
 let board = document.querySelector(".board")
 let start_button = document.querySelector(".board__button")
 let input = document.querySelector(".board__input")
 
-function createBoard(columns, count) {
-    board.textContent = ""
 
-    const template = document.querySelector('#gameTableTemplate')
-    const gameTable = template.querySelector(".table")
-    const restartBtn = gameTable.querySelector(".table__button");
-    
-    // gameTable.style = `
-    //     grid-template-columns: repeat(${columns}, 1fr)
-    //     grid-template-rows: repeat(${columns}, 1fr)
-    // `
+let isGameOver = false
 
-    gameTable.style.gridTemplateCollumns = `repeat(${columns}, 1fr)`
-    gameTable.style.gridTemplateRows = `repeat(${columns}, 1fr)`
-    
-    for (let i = 0; i < count; i++) {
-        gameTable.append(createCard())
+
+
+start_button.addEventListener("click", (event) => {
+    event.preventDefault()
+    const input = document.querySelector('.board__input');
+
+    let columns = input.value;
+    let count;
+
+    if (columns >= 2 && columns <= 6 && columns % 2 == 0) {
+        count = columns * columns;
+    } else {
+        alert("Нужно написать четное число в указанном диапазоне.");
+        return;
     }
 
-    board.append(gameTable)
-    
-    restartBtn.addEventListener("click", ()=>{
-        location.reload
+    createBoard(count, columns);
     })
 
-    board.append(restartBtn)
-
-}
-
-function createCard() {
-    let template = document.querySelector("#cardTemplate")
-    let card = template.querySelector(".card")
-    
-
-}
-
-start_button.addEventListener("click", ()=>{
-    if (input.value % 2 === 0)  {
-        input.value = input.value * input.value
-    } else {
-        input.value = 4
-    }
-})
-
-createBoard()
+export {isGameOver}
