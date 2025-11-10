@@ -37,4 +37,4 @@ function createBoard(count, columns) {
     startTimer();
 };
 
-export {createBoard}
+export { createBoard }
